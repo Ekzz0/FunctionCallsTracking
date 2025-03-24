@@ -49,3 +49,10 @@ repos:
     types: [ python ]
     args:
     - --configfile=.bandit.yaml
+  # PYTEST
+  - id: pytest
+    name: pytest
+    entry: python -m pytest
+    language: system
+    pass_filenames: false  # pytest сам управляет файлами тестов
+    always_run: true  # pytest должен запускаться всегда
