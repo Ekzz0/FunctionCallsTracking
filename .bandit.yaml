@@ -1,0 +1,5 @@
+exclude_dirs:
+- tariff_scales_reports
+
+# skips:
+#   - B101  # Пример пропуска проверки assert
