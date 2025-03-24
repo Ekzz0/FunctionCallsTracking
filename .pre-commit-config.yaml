@@ -1,0 +1,51 @@
+# Список файлов, которые необходимо игнорировать при проверке pre-commit hooks
+exclude: '^(tests/)'
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: check-yaml
+  - id: check-json
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+  - id: check-merge-conflict
+  - id: check-added-large-files
+    args: [ '--maxkb=10000' ]
+- repo: local
+  hooks:
+  # RUFF
+  - id: ruff
+    name: ruff
+    entry: ruff check
+    language: system
+    types: [ python ]
+    args:
+    - --config=pyproject.toml
+  # MYPY
+  - id: mypy
+    name: mypy
+    entry: mypy --explicit-package-bases --config-file pyproject.toml
+    require_serial: true
+    language: system
+    files: \.py$
+  # PYLINT
+  - id: pylint
+    name: pylint
+    entry: pylint
+    language: system
+    types: [ python ]
+    args:
+      [
+        "-rn", # Only display messages
+        "-sn", # Don't display the score
+        "--rcfile=pyproject.toml"
+      ]
+  # BANDIT
+  - id: bandit
+    name: bandit
+    entry: bandit
+    language: system
+    types: [ python ]
+    args:
+    - --configfile=.bandit.yaml

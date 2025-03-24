@@ -1,0 +1,5 @@
+bandit==1.8.0
+mypy==1.14.1
+pre_commit==4.0.1
+pylint==3.3.3
+ruff==0.8.6
