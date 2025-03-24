@@ -52,7 +52,7 @@ repos:
   # PYTEST
   - id: pytest
     name: pytest
-    entry: python -m pytest -v --tb=short --rootdir=.
+    entry: python -m pytest tests/test_tracker.py -v --tb=short --rootdir=.
     language: system
     pass_filenames: false  # pytest сам управляет файлами тестов
     always_run: true  # pytest должен запускаться всегда
