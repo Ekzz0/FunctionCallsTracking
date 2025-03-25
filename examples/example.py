@@ -1,19 +1,18 @@
 from src.tracker import CallsTracker
 
 
-# Тестируемые функции
 def function_a() -> None:
-    """Первая функия"""
+    """First function"""
     function_b()
 
 
 def function_b() -> None:
-    """Вторая функция"""
+    """Second fuction"""
     function_c(1)
 
 
 def function_c(a: int) -> None:
-    """Третье функция"""
+    """Third function"""
     if a == 0:
         pass
     else:
@@ -21,7 +20,7 @@ def function_c(a: int) -> None:
 
 
 def function_d() -> None:
-    """Четвертая функция"""
+    """Fourth function"""
     function_c(0)
 
 
@@ -30,4 +29,4 @@ if __name__ == "__main__":
     function_a = tracker.add_tracking(function_a)  # Or rename target function like tracked_function_a
     function_a()  # Run the main function
     print("Call sequence:", tracker.call_sequence)  # See the calls sequence
-    # ['function_a', 'function_b', 'function_c', 'function_d', 'function_c']
+    # Output: ['function_a', 'function_b', 'function_c', 'function_d', 'function_c']

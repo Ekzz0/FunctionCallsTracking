@@ -3,19 +3,18 @@ import pytest
 from src.tracker import CallsTracker
 
 
-# Тестируемые функции
 def function_a():
-    """Первая функия"""
+    """First function"""
     function_b()
 
 
 def function_b():
-    """Вторая функция"""
+    """Second function"""
     function_c(1)
 
 
 def function_c(a):
-    """Третье функция"""
+    """Third function"""
     if a == 0:
         pass
     else:
@@ -23,12 +22,12 @@ def function_c(a):
 
 
 def function_d():
-    """Четвертая функция"""
+    """Fourth function"""
     function_c(0)
 
 
 def test_tracker_basic():
-    """Проверяем, что tracker корректно отслеживает вызовы функций."""
+    """Test Tracker main functional"""
     tracker = CallsTracker()
     tracked_function_a = tracker.add_tracking(function_a)
 
@@ -38,7 +37,7 @@ def test_tracker_basic():
 
 
 def test_tracker_empty_call_sequence():
-    """Проверяем, что при отсутствии вызовов возникает исключение."""
+    """Test Tracker empty call exception"""
     tracker = CallsTracker()
 
     with pytest.raises(ValueError, match="Call sequence is empty!"):
@@ -46,7 +45,7 @@ def test_tracker_empty_call_sequence():
 
 
 def test_tracker_multiple_calls():
-    """Проверяем, что последовательность вызовов накапливается при нескольких запусках."""
+    """Test calls sequence with multiple calls"""
     tracker = CallsTracker()
     tracked_function_a = tracker.add_tracking(function_a)
 
@@ -68,7 +67,7 @@ def test_tracker_multiple_calls():
 
 
 def test_tracker_clear_sequence():
-    """Проверяем, что последовательность вызовов очищается"""
+    """Test calls sequence clearing"""
     tracker = CallsTracker()
     tracked_function_a = tracker.add_tracking(function_a)
 
@@ -76,13 +75,12 @@ def test_tracker_clear_sequence():
     tracker.clear_call_sequence()
     tracked_function_a()
 
-    # Два вызова должны удвоить последовательность вызовов
     with pytest.raises(ValueError, match="Call sequence is empty!"):
         _ = tracker.call_sequence
 
 
 def test_tracker_clear_empty_sequence():
-    """Проверяем, что пустая последовательность вызовов не очищается."""
+    """Test empty call sequence clearing exception"""
     tracker = CallsTracker()
 
     with pytest.raises(ValueError, match="Call sequence is already empty!"):

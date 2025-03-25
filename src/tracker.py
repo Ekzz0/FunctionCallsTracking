@@ -13,7 +13,7 @@ class CallsTracker:
         self._call_sequence: List[str] = []
 
     def add_tracking(self, tracing_function: Callable[..., Any]) -> Callable[..., Any]:
-        """Метод добавляет к отслеживанию функцию"""
+        """Add function to tracking"""
         if not callable(tracing_function):
             raise ValueError("Name must be a callable object!")
 

@@ -4,13 +4,13 @@ from typing import Any, Callable, List
 
 
 def track_decorator(call_sequence: List[str]) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
-    """Декоратор для отслеживания последовательности вызовов функций."""
+    """Decorator for calls sequence tracking"""
 
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
-        """Декоратор, оборачивающий функцию и отслеживающий ее вызовы."""
+        """Inner decorator"""
 
         def trace_calls(frame: FrameType, event: str, _: Any) -> Callable[..., Any]:
-            """Функция трассировки, отслеживающая вызовы функций."""
+            """Main tracking function"""
 
             if event == "call":
                 func_name = frame.f_code.co_name
@@ -18,7 +18,7 @@ def track_decorator(call_sequence: List[str]) -> Callable[[Callable[..., Any]], 
             return trace_calls
 
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            """Обертка, устанавливающая трассировку перед вызовом функции и отключающая её после."""
+            """Main wrapper for function."""
 
             sys.settrace(trace_calls)
             result = func(*args, **kwargs)
