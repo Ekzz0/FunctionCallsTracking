@@ -1,5 +1,5 @@
 # Список файлов, которые необходимо игнорировать при проверке pre-commit hooks
-exclude: '^(tests/)'
+exclude: '^(tests/|setup.py)'
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks

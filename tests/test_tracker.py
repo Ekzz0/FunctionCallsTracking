@@ -1,6 +1,6 @@
 import pytest
 
-from src.tracker import CallsTracker
+from tracecall.tracker import CallsTracker
 
 
 def function_a():

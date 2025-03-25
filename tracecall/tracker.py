@@ -1,6 +1,6 @@
 from typing import Any, Callable, List
 
-from src.decorator import track_decorator
+from tracecall.decorator import track_decorator
 
 
 class CallsTracker:
